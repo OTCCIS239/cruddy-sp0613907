@@ -16,3 +16,5 @@ Route::get('/', function () {
 })->name('home');
 
 Route::resource('games', 'GamesController');
+Route::resource('customers', 'CustomersController');
+Route::resource('orders', 'OrdersController');
