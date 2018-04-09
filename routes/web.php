@@ -17,3 +17,6 @@ Route::get('/', function () {
 
 Route::resource('games', 'GamesController');
 Route::resource('customers', 'CustomersController');
+Route::resource('merch', 'MerchController');
+Route::resource('media', 'MediaController');
+Route::resource('contact', 'ContactController');

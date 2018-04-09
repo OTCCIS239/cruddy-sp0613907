@@ -13,7 +13,7 @@ class MerchController extends Controller
      */
     public function index()
     {
-        //
+        return view('merch.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class MerchController extends Controller
      */
     public function create()
     {
-        //
+        return view('merch.create');
     }
 
     /**
@@ -45,7 +45,9 @@ class MerchController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('merch.show',[
+          "id" => $id
+        ]);
     }
 
     /**

@@ -13,7 +13,7 @@ class MediaController extends Controller
      */
     public function index()
     {
-        //
+        return view('media.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class MediaController extends Controller
      */
     public function create()
     {
-        //
+        return view('media.create');
     }
 
     /**
@@ -45,7 +45,9 @@ class MediaController extends Controller
      */
     public function show($id)
     {
-        //
+      return view('media.show',[
+        "id" => $id
+      ]);
     }
 
     /**
