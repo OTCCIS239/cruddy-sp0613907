@@ -1,6 +1,4 @@
-<?php
-$id =  filter_input(INPUT_GET, 'show/{game}');
-?>
+
 @extends('layouts.app')
 
 @section('content')
@@ -18,7 +16,7 @@ $id =  filter_input(INPUT_GET, 'show/{game}');
     </thead>
     <tbody>
     <tr>
-      <th scope="row"><?php echo $id ?></th>
+      <th scope="row">{{ $id }}</th>
       <td></td>
       <td></td>
       <td></td>
