@@ -23,7 +23,7 @@ class GamesController extends Controller
      */
     public function create()
     {
-        //
+        return view('games.create');
     }
 
     /**
@@ -45,7 +45,8 @@ class GamesController extends Controller
      */
     public function show($id)
     {
-        //
+
+        return view('games.show');
     }
 
     /**
