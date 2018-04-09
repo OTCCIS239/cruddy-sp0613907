@@ -17,4 +17,3 @@ Route::get('/', function () {
 
 Route::resource('games', 'GamesController');
 Route::resource('customers', 'CustomersController');
-Route::resource('orders', 'OrdersController');
