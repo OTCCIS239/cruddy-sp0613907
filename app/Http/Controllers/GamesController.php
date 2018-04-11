@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App/Game; //need this to use the model and get database info
 use Illuminate\Http\Request;
 
 class GamesController extends Controller
@@ -13,6 +14,7 @@ class GamesController extends Controller
      */
     public function index()
     {
+      //dd(Game::all()); //something to see database
         return view('games.index');
     }
 
