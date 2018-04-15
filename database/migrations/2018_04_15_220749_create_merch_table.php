@@ -15,6 +15,14 @@ class CreateMerchTable extends Migration
     {
         Schema::create('merch', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->string('description');
+            $table->double('price');
+            $table->binary('product_photo');
+            $table->boolean('size_small')->default('0');
+            $table->boolean('size_medium')->default('0');
+            $table->boolean('size_large')->default('0');
+            $table->boolean('size_xlarge')->default('0');
             $table->timestamps();
         });
     }
