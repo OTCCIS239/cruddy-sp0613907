@@ -14,8 +14,9 @@ class GamesController extends Controller
      */
     public function index()
     {
+      $games = Game::all();
       //dd(Game::all()); //something to see database
-        return view('games.index');
+        return view('games.index', compact('games'));
     }
 
     /**
