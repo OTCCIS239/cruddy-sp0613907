@@ -2,28 +2,28 @@
 
 @section('content')
 <div class="container">
-  <h3>Add New Game</h3>
+  <h3>Edit Game Items</h3>
+  <form action="/games/{{ $game->id }}" method="post">
+    <input type="hidden" name="_method" value="PATCH">
+    {{ csrf_field() }}
 
-
-  <form action="games" method="post">
-    {{csrf_field() }}
 
     <div class="form-group row">
     <label for="name" class="col-sm-2 col-form-label">Game Name</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="name" placeholder="Name">
+      <input type="text" class="form-control" id="name" value="{{ @$game ?$game->name : ''}}" placeholder="Name">
     </div>
     </div>
   <div class="form-group row">
   <label for="description" class="col-sm-2 col-form-label">Description</label>
   <div class="col-sm-10">
-    <input type="text" class="form-control" id="description" placeholder="Description">
+    <input type="text" class="form-control" id="description" value="{{ @$game ?$game->description : ''}}" placeholder="Description">
   </div>
   </div>
   <div class="form-group row">
   <label for="price" class="col-sm-2 col-form-label">Price</label>
   <div class="col-sm-10">
-    <input type="text" class="form-control" id="price" placeholder="$9.99">
+    <input type="text" class="form-control" id="price" value="{{ @$game ?$game->price : ''}}" placeholder="$9.99">
   </div>
   </div>
 
@@ -56,11 +56,9 @@
     </div>
   </div>
   </div> -->
-
-
   <div class="form-group row">
   <div class="col-sm-10">
-    <button class="btn btn-danger">Submit</button>
+    <button type="submit" class="btn btn-danger">Save Changes</button>
   </div>
   </div>
   </form>

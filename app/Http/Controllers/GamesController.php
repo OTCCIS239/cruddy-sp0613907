@@ -15,8 +15,8 @@ class GamesController extends Controller
     public function index()
     {
       $games = Game::all();
-      //dd(Game::all()); //something to see database
-        return view('games.index', compact('games'));
+      //dd(Game::all()); //dump/die view
+      return view('games.index', compact('games'));
     }
 
     /**
@@ -26,6 +26,7 @@ class GamesController extends Controller
      */
     public function create()
     {
+
         return view('games.create');
     }
 
@@ -37,7 +38,14 @@ class GamesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $this->validate($request,[
+        'name' => 'required',
+        'description' => 'required',
+        'price' => 'required',
+      ]);
+        $game = Game::create($request->all());
+
+        return redirect('/games/' . $game->id);
     }
 
     /**
@@ -46,11 +54,9 @@ class GamesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Game $game)
     {
-        return view('games.show',[
-          "id" => $id
-        ]);
+        return view('games.show', compact('game'));
     }
 
     /**
@@ -59,9 +65,9 @@ class GamesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Game $game)
     {
-        //
+        return view('games.edit', compact('game'));
     }
 
     /**
@@ -71,9 +77,11 @@ class GamesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Game $game)
     {
-        //
+        $game->update($request->all());
+
+        return redirect('/games/' . $game->id);
     }
 
     /**
@@ -82,8 +90,9 @@ class GamesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Game $game)
     {
-        //
+        $game->delete();
+        return redirect('/games');
     }
 }
