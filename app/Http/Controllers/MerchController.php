@@ -13,7 +13,9 @@ class MerchController extends Controller
      */
     public function index()
     {
-        return view('merch.index');
+      $merchs = Merch::all();
+
+        return view('merch.index', compact('merchs'));
     }
 
     /**
@@ -34,7 +36,14 @@ class MerchController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $this->validate($request,[
+        'name' => 'required',
+        'description' => 'required',
+        'price' => 'required',
+      ]);
+        $merch = Merch::create($request->all());
+
+        return redirect('/merch/' . $merch->id);
     }
 
     /**
@@ -43,11 +52,9 @@ class MerchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Merch $merch)
     {
-        return view('merch.show',[
-          "id" => $id
-        ]);
+        return view('merch.show', compact('merch'));
     }
 
     /**
@@ -56,9 +63,9 @@ class MerchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Merch $merch)
     {
-        //
+        return view('merch.show', compact('merch'));
     }
 
     /**
@@ -68,9 +75,11 @@ class MerchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Merch $merch)
     {
-        //
+      $merch->update($request->all());
+
+      return redirect('/games/' . $merch->id);
     }
 
     /**
@@ -79,8 +88,9 @@ class MerchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Merch $merch)
     {
-        //
+      $merch->delete();
+      return redirect('/games');
     }
 }

@@ -5,7 +5,12 @@
 
 <div class="container">
   <div class="container">
-    <h3 class="col-2">Complete Changes</h3>
+    <h3 class="col-2">Game {{$game->id}}</h3>
+    <form action="/games/{{$game->id}}" method="post">
+      <input type="hidden" name="_method" value="delete"></input>
+      {{csrf_field() }}
+      <button class="btn btn-danger">Delete</button>
+    </form>
   </div>
   <table class="table table-striped">
   <thead class="thead-dark">

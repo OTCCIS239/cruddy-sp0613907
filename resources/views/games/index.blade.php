@@ -20,7 +20,7 @@
   <tbody>
   <?php foreach ($games as $game):?>
     <tr>
-      <td>{{ $game->id }}</td>
+      <td><a href="/games/{{$game->id}}">{{ $game->id }}</a></td>
       <td>{{ $game->name }}</td>
       <td>{{ $game->description }}</td>
       <td>{{ $game->price }}</td>
