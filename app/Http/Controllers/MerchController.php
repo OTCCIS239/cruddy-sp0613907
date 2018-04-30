@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Merch;
 use Illuminate\Http\Request;
 
 class MerchController extends Controller
@@ -13,9 +14,9 @@ class MerchController extends Controller
      */
     public function index()
     {
-      $merchs = Merch::all();
+      $merches = Merch::all();
 
-        return view('merch.index', compact('merchs'));
+      return view('merch.index', compact('merches'));
     }
 
     /**
@@ -65,7 +66,7 @@ class MerchController extends Controller
      */
     public function edit(Merch $merch)
     {
-        return view('merch.show', compact('merch'));
+        return view('merch.edit', compact('merch'));
     }
 
     /**
@@ -79,7 +80,7 @@ class MerchController extends Controller
     {
       $merch->update($request->all());
 
-      return redirect('/games/' . $merch->id);
+      return redirect('/merch/' . $merch->id);
     }
 
     /**
@@ -91,6 +92,6 @@ class MerchController extends Controller
     public function destroy(Merch $merch)
     {
       $merch->delete();
-      return redirect('/games');
+      return redirect('/merch');
     }
 }

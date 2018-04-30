@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Media;
 use Illuminate\Http\Request;
 
 class MediaController extends Controller
@@ -13,7 +14,9 @@ class MediaController extends Controller
      */
     public function index()
     {
-        return view('media.index');
+      $medias = Media::all();
+
+      return view('media.index', compact('medias'));
     }
 
     /**
@@ -34,7 +37,14 @@ class MediaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $this->validate($request,[
+        'name' => 'required',
+        'description' => 'required',
+        'media_item' => 'required',
+      ]);
+        $media = Media::create($request->all());
+
+        return redirect('/media/' . $media->id);
     }
 
     /**
@@ -43,11 +53,9 @@ class MediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Media $media)
     {
-      return view('media.show',[
-        "id" => $id
-      ]);
+        return view('media.show', compact('media'));
     }
 
     /**
@@ -56,9 +64,9 @@ class MediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Media $media)
     {
-        //
+        return view('media.edit', compact('media'));
     }
 
     /**
@@ -68,9 +76,11 @@ class MediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Media $media)
     {
-        //
+      $media->update($request->all());
+
+      return redirect('/media/' . $media->id);
     }
 
     /**
@@ -79,8 +89,9 @@ class MediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Media $media)
     {
-        //
+      $media->delete();
+      return redirect('/media');
     }
 }
