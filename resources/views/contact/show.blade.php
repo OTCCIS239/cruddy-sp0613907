@@ -1,18 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-<table class="table table-striped">
-<thead class="thead-dark">
-<tr>
-  <th scope="col">#</th>
-  <th scope="col">Customer Feedback</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <th scope="row">{{ $id }}</th>
-  <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
-</tr>
-</tbody>
-</table>
+<div class="container">
+  <div class="container">
+    <h3 class="col-2">Email {{$contact->id}}</h3>
+    <form action="/contact/{{$contact->id}}" method="post">
+      <input type="hidden" name="_method" value="delete"></input>
+      {{csrf_field() }}
+      <button class="btn btn-danger">Delete</button>
+    </form>
+  </div>
+  <table class="table table-striped">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Customer Feedback</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ $contact->id }}</td>
+      <td>{{ $contact->message }}</td>
+      <td>
+        <a href="/contact/{{$contact->id}}/edit" class="btn btn-sm btn-danger">Edit</a>
+      </td>
+    </tr>
+
+
+  </tbody>
+  </table>
+</div>
 @stop

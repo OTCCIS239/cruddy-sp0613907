@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contact;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -13,7 +14,9 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('contact.index');
+      $contact = Contact::all();
+      //dd(Game::all()); //dump/die view
+      return view('contact.index', compact('contact'));
     }
 
     /**
@@ -34,7 +37,13 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      //dd($request->all());
+      $this->validate($request,[
+        'message' => 'required',
+      ]);
+        $contact = Contact::create($request->all());
+
+        return redirect('/contact/' . $contact->id);
     }
 
     /**
@@ -43,11 +52,9 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Contact $contact)
     {
-        return view('contact.show', [
-          "id" => $id
-        ]);
+        return view('contact.show', compact('contact'));
     }
 
     /**
@@ -56,9 +63,9 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Contact $contact)
     {
-        //
+        return view('contact.edit', compact('contact'));
     }
 
     /**
@@ -68,9 +75,11 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Contact $contact)
     {
-        //
+        $contact->update($request->all());
+
+        return redirect('/contact/' . $contact->id);
     }
 
     /**
@@ -79,8 +88,9 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+        return redirect('/contact');
     }
 }

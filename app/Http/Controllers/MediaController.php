@@ -14,9 +14,9 @@ class MediaController extends Controller
      */
     public function index()
     {
-      $medias = Media::all();
+      $media = Media::all();
 
-      return view('media.index', compact('medias'));
+      return view('media.index', compact('media'));
     }
 
     /**

@@ -26,13 +26,13 @@
   </tr>
   </thead>
   <tbody>
-  <?php foreach ($medias as $media):?>
+  <?php foreach ($media as $aMedia):?>
     <tr>
-      <td><a href="/media/{{$media->id}}">{{ $media->id }}</a></td>
-      <td>{{ $media->name }}</td>
-      <td>{{ $media->description }}</td>
+      <td><a href="/media/{{$aMedia->id}}">{{ $aMedia->id }}</a></td>
+      <td>{{ $aMedia->name }}</td>
+      <td>{{ $aMedia->description }}</td>
       <td>
-        <a href="/media/{{$media->id}}/edit" class="btn btn-sm btn-danger">Edit</a>
+        <a href="/media/{{$aMedia->id}}/edit" class="btn btn-sm btn-danger">Edit</a>
       </td>
     </tr>
   <?php endforeach; ?>

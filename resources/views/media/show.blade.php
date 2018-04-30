@@ -2,7 +2,6 @@
 @extends('layouts.app')
 
 @section('content')
-
 <div class="container">
   <div class="container">
     <h3 class="col-2">Item {{$media->id}}</h3>
