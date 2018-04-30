@@ -37,10 +37,10 @@ class MediaController extends Controller
      */
     public function store(Request $request)
     {
+      //dd($request->all());
       $this->validate($request,[
         'name' => 'required',
         'description' => 'required',
-        'media_item' => 'required',
       ]);
         $media = Media::create($request->all());
 

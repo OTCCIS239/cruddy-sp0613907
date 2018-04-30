@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use Illuminate\Http\Request;
 
 class CustomersController extends Controller
@@ -13,7 +14,9 @@ class CustomersController extends Controller
      */
     public function index()
     {
-        return view('customers.index');
+      $customers = Customer::all();
+      //dd(Game::all()); //dump/die view
+      return view('customers.index', compact('customers'));
     }
 
     /**
@@ -34,7 +37,21 @@ class CustomersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      //dd($request->all());
+      $this->validate($request,[
+        'fname' => 'required',
+        'lname' => 'required',
+        'email' => 'required',
+        'password' => 'required',
+        'line1' => 'required',
+        'city' => 'required',
+        'state' => 'required',
+        'zip' => 'required',
+
+      ]);
+        $customer = Customer::create($request->all());
+
+        return redirect('/customers/' . $customer->id);
     }
 
     /**
@@ -43,11 +60,9 @@ class CustomersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Customer $customer )
     {
-        return view('customers.show', [
-          "id" => $id
-        ]);
+        return view('customers.show', compact('customer'));
     }
 
     /**
@@ -56,9 +71,9 @@ class CustomersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Customer $customer)
     {
-        //
+        return view('customers.edit', compact('customer'));
     }
 
     /**
@@ -68,9 +83,11 @@ class CustomersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Customer $customer)
     {
-        //
+        $customer->update($request->all());
+
+        return redirect('/customers/' . $customer->id);
     }
 
     /**
@@ -79,8 +96,9 @@ class CustomersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Customer $customer)
     {
-        //
+        $customer->delete();
+        return redirect('/customers');
     }
 }

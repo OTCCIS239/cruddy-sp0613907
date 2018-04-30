@@ -1,42 +1,48 @@
 @extends('layouts.app')
 @section('content')
-<form>
+<div class="container">
+  <h3>Add New Customer</h3>
+
+
+  <form action="/customers" method="post">
+    {{csrf_field() }}
+
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="fname">First Name</label>
-      <input type="text" class="form-control" id="fname" placeholder="John">
+      <input name="fname" type="text" class="form-control" id="fname" placeholder="John">
     </div>
     <div class="form-group col-md-6">
       <label for="lname">Last Name</label>
-      <input type="text" class="form-control" id="lname" placeholder="Doe">
+      <input name="lname" type="text" class="form-control" id="lname" placeholder="Doe">
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail4">Email</label>
-      <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+      <input name="email" type="email" class="form-control" id="inputEmail4" placeholder="Email">
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4">Password</label>
-      <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+      <input name="password" type="password" class="form-control" id="inputPassword4" placeholder="Password">
     </div>
   </div>
   <div class="form-group">
     <label for="inputAddress">Address</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+    <input name="line1" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
   </div>
   <div class="form-group">
     <label for="inputAddress2">Address 2</label>
-    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+    <input name="line2" type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCity">City</label>
-      <input type="text" class="form-control" id="inputCity">
+      <input name="city" type="text" class="form-control" id="inputCity">
     </div>
     <div class="form-group col-md-4">
       <label for="inputState">State</label>
-      <select id="inputState" class="form-control">
+      <select name="state" id="inputState" class="form-control">
         <option selected>Choose...</option>
         <option value="AL">Alabama</option>
       	<option value="AK">Alaska</option>
@@ -93,9 +99,10 @@
     </div>
     <div class="form-group col-md-2">
       <label for="inputZip">Zip</label>
-      <input type="text" class="form-control" id="inputZip">
+      <input name="zip" type="text" class="form-control" id="inputZip">
     </div>
   </div>
   <button type="submit" class="btn btn-primary">Create</button>
 </form>
+
 @stop

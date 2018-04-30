@@ -11,6 +11,5 @@ class Media extends Model
     //any items editable in your database go here
     'name',
     'description',
-    'media_item',
 ];
 }
