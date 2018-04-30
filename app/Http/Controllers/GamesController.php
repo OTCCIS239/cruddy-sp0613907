@@ -38,6 +38,7 @@ class GamesController extends Controller
      */
     public function store(Request $request)
     {
+      //dd($request->all());
       $this->validate($request,[
         'name' => 'required',
         'description' => 'required',
